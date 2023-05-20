@@ -3,11 +3,11 @@ uuid = "d62e17d2-e44d-465b-9361-388c63fb8e8b"
 authors = ["Julius Krumbiegel <julius.krumbiegel@gmail.com>"]
 version = "0.1.0"
 
-[weakdeps]
-Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+[deps]
+Requires = "ae029012-a4dd-5104-9daa-d747884805df"
 
 [extensions]
-# name of extension to the left
-# extension dependencies required to load the extension to the right
-# use a list for multiple extension dependencies
 MakieExtension = "Makie"
+
+[weakdeps]
+Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"

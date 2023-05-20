@@ -1,8 +1,13 @@
 module MakieExtension
 
+if isdefined(Base, :get_extension)
+    using Makie
+else
+    using ..Makie
+end
+
 using SomePackage
 import SomePackage: someplot, someplot!
-using Makie
 
 Makie.convert_single_argument(v::SomeVector) = v.v
 

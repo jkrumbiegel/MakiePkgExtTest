@@ -1,5 +1,9 @@
 module SomePackage
 
+if !isdefined(Base, :get_extension)
+    using Requires
+end 
+
 export SomeVector
 export someplot, someplot!, someotherplot, someotherplot!
 
@@ -14,6 +18,12 @@ function someotherplot end
 function someotherplot! end
 
 function __init__()
+    @static if !isdefined(Base, :get_extension)
+        @require Makie="ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a" begin
+            include("../ext/MakieExtension.jl")
+        end
+    end
+
     Base.Experimental.register_error_hint(MethodError) do io, exc, argtypes, kwargs
         if exc.f in [someplot, someplot!, someotherplot, someotherplot!]
             if isempty(methods(exc.f))
